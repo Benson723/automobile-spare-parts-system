@@ -1,0 +1,12 @@
+$res=$ob->execute($sql);
+	if($r=mysql_fetch_array($res))
+	{
+		echo "done";
+	}
+	else
+	{
+		echo "error";
+	}
+	
+}
+?>

@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<style>
+</style>
+</head>
+<body>
+<form action=''method="post" enctype="multipart/form-data" name="form1">
+<table>
+<tr>
+<td> Image Name </td>
+<td><input type="text" name="t1" /></td>
+</tr>
+<tr>
+<td> Upload File </td>
+<td><input type="file" name="image"</td>
+</tr>
+<tr>
+<td></td>
+<td><input type="submit" value="Submit" name="b1"</td>
+</tr>
+</table>
+
+
+<?php
+if(isset($_POST['b1']))
+{
+$con=mysql_connect("localhost","root","");
+mysql_select_db("upload",$con);
+$name=$_POST['t1'];
+$image=$_FILES['image']['name'];
+move_uploaded_file($_FILES['image']['tmp_name'],"upload/".$_FILES['image']['name']);
+$qry="insert into image(name,image)values('$name','$image')";
+if(mysql_query($qry,$con))
+{
+echo "Successfully inserted";
+}
+}
+?>
+</form>
+</body>
+</html>
